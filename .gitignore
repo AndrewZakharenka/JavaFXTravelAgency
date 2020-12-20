@@ -1,0 +1,6 @@
+.idea/
+TravelAgency.iml
+target/
+src/main/java/webapp/
+src/main/resources/META-INF/
+src/main/resources/WEB-INF/
