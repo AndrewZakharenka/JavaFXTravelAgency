@@ -7,6 +7,9 @@ public abstract class EntityDTO {
         this.id = id;
     }
 
+    public EntityDTO() {
+    }
+
     public long getId() {
         return id;
     }

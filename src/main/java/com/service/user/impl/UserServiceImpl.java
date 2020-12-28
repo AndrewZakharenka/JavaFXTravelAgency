@@ -4,6 +4,7 @@ import com.converter.IConverter;
 import com.converter.user.UserConverter;
 import com.dao.entity.user.UserEntity;
 import com.dao.impl.mysql.user.MySqlUserDAO;
+import com.dao.impl.orm.user.UserOrmDAO;
 import com.dao.user.UserDAO;
 import com.service.dto.user.UserDTO;
 import com.service.user.UserService;
@@ -11,7 +12,7 @@ import com.service.user.UserService;
 import java.util.List;
 
 public class UserServiceImpl implements UserService {
-    private UserDAO userDAO = new MySqlUserDAO();
+    private UserDAO userDAO = new UserOrmDAO();
     private IConverter<UserEntity, UserDTO> converter = new UserConverter();
 
     @Override

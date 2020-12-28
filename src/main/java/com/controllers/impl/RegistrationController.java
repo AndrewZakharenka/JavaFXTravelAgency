@@ -16,13 +16,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class RegistrationController{
     private static final UserService USER_SERVICE = new UserServiceImpl();
-    private static final Logger LOGER = LogManager.getLogger(AuthenticationController.class);
+    private static final Logger LOGGER = LogManager.getLogger(AuthenticationController.class);
 
     @FXML
     private ResourceBundle resources;
@@ -72,9 +72,9 @@ public class RegistrationController{
                         AuthenticationController authenticationController = loader.getController();
                         authenticationController.setLogin(userDTO.getLogin());
                         Main.primaryStage.show();
-                        loginButton.getScene().getWindow().hide();
+//                        loginButton.getScene().getWindow().hide();
                     } catch (IOException e) {
-                        LOGER.error("Error when opening the form {" + e.getMessage() + "}", e);
+                        LOGGER.error("Error when opening the form {}", e.getMessage(), e);
                     }
                 }
             }

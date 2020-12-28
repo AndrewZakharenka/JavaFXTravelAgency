@@ -27,6 +27,9 @@ public class UserDTO extends EntityDTO {
         this.roles = roles;
     }
 
+    public UserDTO() {
+    }
+
     public String getRole() {
         return roles;
     }
@@ -67,4 +70,8 @@ public class UserDTO extends EntityDTO {
         this.password = password;
     }
 
+    @Override
+    public String toString() {
+        return name + " " + surname;
+    }
 }

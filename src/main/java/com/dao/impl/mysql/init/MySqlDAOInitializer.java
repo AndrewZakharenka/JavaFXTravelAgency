@@ -1,8 +1,9 @@
 package com.dao.impl.mysql.init;
 
 import com.dao.init.DAOInitializer;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class MySqlDAOInitializer implements DAOInitializer {
     private static final Logger LOGGER = LogManager.getLogger(MySqlDAOInitializer.class);
@@ -18,7 +19,7 @@ public class MySqlDAOInitializer implements DAOInitializer {
                 isInit = true;
                 LOGGER.info("DAO initialized");
             } catch (ClassNotFoundException e){
-                LOGGER.error("Unable to load JDBC driver: {" + e.getMessage() + "}", e);
+                LOGGER.error("Unable to load JDBC driver: {}", e.getMessage(), e);
             }
         }
     }

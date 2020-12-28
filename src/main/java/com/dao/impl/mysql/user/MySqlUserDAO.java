@@ -2,6 +2,7 @@ package com.dao.impl.mysql.user;
 
 import com.dao.entity.fields.user.UserEntityFields;
 import com.dao.entity.query.user.UserQuery;
+import com.dao.entity.role.RoleEntity;
 import com.dao.entity.user.UserEntity;
 import com.dao.exception.DAOException;
 import com.dao.impl.mysql.MySqlAbstractDAO;
@@ -29,7 +30,7 @@ public class MySqlUserDAO extends MySqlAbstractDAO<UserEntity> implements UserDA
                 }
                 return user;
             } catch (SQLException e) {
-                LOGGER.error("Unable to get connection: {" + e.getMessage() + "}", e);
+                LOGGER.error("Unable to get connection: {}", e.getMessage(), e);
                 throw new DAOException("Unable to get user");
             }
         }
@@ -50,7 +51,7 @@ public class MySqlUserDAO extends MySqlAbstractDAO<UserEntity> implements UserDA
                 statement.execute();
                 return getByLogin(entity.getLogin());
             } catch (SQLException e) {
-                LOGGER.error("Unable to get connection: {" + e.getMessage() + "}", e);
+                LOGGER.error("Unable to get connection: {}", e.getMessage(), e);
                 throw new DAOException("Unable to create user");
             }
         }
@@ -58,25 +59,30 @@ public class MySqlUserDAO extends MySqlAbstractDAO<UserEntity> implements UserDA
     }
 
     @Override
-    public UserEntity getEntity(long id) throws DAOException {
-        Optional<Connection> connectionOptional = getConnection();
-        UserEntity user = new UserEntity();
-        if (connectionOptional.isPresent()) {
-            try (Connection connection = connectionOptional.get();
-                 PreparedStatement statement = connection.prepareStatement(UserQuery.GET_USER_BY_ID)) {
-                statement.setLong(1, id);
-                ResultSet resultSet = statement.executeQuery();
-                while (resultSet.next()){
-                    user = getUserEntityFromResultSet(resultSet);
-                }
-                return user;
-            } catch (SQLException e) {
-                LOGGER.error("Unable to get connection: {" + e.getMessage() + "}", e);
-                throw new DAOException("Unable to get user");
-            }
-        }
-        return user;
+    public Optional<UserEntity> getEntity(long id) throws DAOException {
+        return Optional.empty();
     }
+
+//    @Override
+//    public UserEntity getEntity(long id) throws DAOException {
+//        Optional<Connection> connectionOptional = getConnection();
+//        UserEntity user = new UserEntity();
+//        if (connectionOptional.isPresent()) {
+//            try (Connection connection = connectionOptional.get();
+//                 PreparedStatement statement = connection.prepareStatement(UserQuery.GET_USER_BY_ID)) {
+//                statement.setLong(1, id);
+//                ResultSet resultSet = statement.executeQuery();
+//                while (resultSet.next()){
+//                    user = getUserEntityFromResultSet(resultSet);
+//                }
+//                return user;
+//            } catch (SQLException e) {
+//                LOGGER.error("Unable to get connection: {}", e.getMessage(), e);
+//                throw new DAOException("Unable to get user");
+//            }
+//        }
+//        return user;
+//    }
 
     @Override
     public List<UserEntity> getAll() throws DAOException {
@@ -91,7 +97,7 @@ public class MySqlUserDAO extends MySqlAbstractDAO<UserEntity> implements UserDA
                 }
                 return entityList;
             } catch (SQLException e) {
-                LOGGER.error("Unable to get connection: {" + e.getMessage() + "}", e);
+                LOGGER.error("Unable to get connection: {}", e.getMessage(), e);
                 throw new DAOException("Unable to retrieve users");
             }
         }
@@ -112,7 +118,7 @@ public class MySqlUserDAO extends MySqlAbstractDAO<UserEntity> implements UserDA
                 statement.execute();
                 return userEntity;
             } catch (SQLException e) {
-                LOGGER.error("Unable to get connection: {" + e.getMessage() + "}", e);
+                LOGGER.error("Unable to get connection: {}", e.getMessage(), e);
                 throw new DAOException("Unable to update user");
             }
         }
@@ -128,7 +134,7 @@ public class MySqlUserDAO extends MySqlAbstractDAO<UserEntity> implements UserDA
                 statement.setLong(1, id);
                 statement.execute();
             } catch (SQLException e) {
-                LOGGER.error("Unable to get connection: {" + e.getMessage() + "}", e);
+                LOGGER.error("Unable to get connection: {}", e.getMessage(), e);
                 throw new DAOException("Unable to delete user");
             }
         }
@@ -142,9 +148,9 @@ public class MySqlUserDAO extends MySqlAbstractDAO<UserEntity> implements UserDA
             final String login = resultSet.getString(UserEntityFields.LOGIN);
             final String password = resultSet.getString(UserEntityFields.PASSWORD);
             final String role = resultSet.getString(UserEntityFields.ROLE_NAME);
-            return new UserEntity(id, name, surname, login, password, role);
+            return new UserEntity(id, name, surname, login, password, new RoleEntity(role));
         } catch (SQLException e) {
-            LOGGER.error("Failed to convert result set in UserEntity");
+            LOGGER.error("Failed to convert result set in UserEntity {}", e.getMessage(), e);
             throw new DAOException("Unable to read users", e);
         }
     }

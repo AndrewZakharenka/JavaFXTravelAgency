@@ -1,20 +1,22 @@
 package com;
 
 import com.dao.impl.mysql.init.MySqlDAOInitializer;
+import com.dao.impl.orm.init.OrmDAOInitializer;
 import com.dao.init.DAOInitializer;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 
 public class Main extends Application {
     private static final Logger LOGGER = LogManager.getLogger(Main.class);
-    private static final DAOInitializer DAO_INITIALIZER = new MySqlDAOInitializer();
+    private static final DAOInitializer DAO_INITIALIZER = new OrmDAOInitializer();
     public static Stage primaryStage;
 
     @Override

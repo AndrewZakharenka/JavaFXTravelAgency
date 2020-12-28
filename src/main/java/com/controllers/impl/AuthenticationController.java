@@ -19,9 +19,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class AuthenticationController {
 
@@ -31,7 +31,7 @@ public class AuthenticationController {
 
     private static final DAOInitializer DAO_INITIALIZER = new MySqlDAOInitializer();
     private static final UserService USER_SERVICE = new UserServiceImpl();
-    private static final Logger LOGER = LogManager.getLogger(AuthenticationController.class);
+    private static final Logger LOGGER = LogManager.getLogger(AuthenticationController.class);
 
     @FXML
     private ResourceBundle resources;
@@ -63,7 +63,7 @@ public class AuthenticationController {
                 Main.primaryStage.show();
                 signUpButton.getScene().getWindow().hide();
             } catch (IOException e) {
-                LOGER.error("Error when opening the form {" + e.getMessage() + "}", e);
+                LOGGER.error("Error when opening the form {}", e.getMessage(), e);
             }
 
         });
@@ -73,7 +73,20 @@ public class AuthenticationController {
             Optional<UserDTO> user = users.stream().filter(u -> u.getLogin().equals(loginField.getText()) &&
                     u.getPassword().equals(passwordField.getText())).findAny();
             if (user.isPresent()){
-                LOGER.info("User is present! {" + user.getClass().getName() + "}");
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource("/forms/viewTrips.fxml"));
+
+                try {
+                    Parent root = loader.load();
+                    Main.primaryStage.setScene(new Scene(root, 1200, 600));
+                    Main.primaryStage.setTitle("Просмотр туров");
+                    Main.primaryStage.show();
+//                    signUpButton.getScene().getWindow().hide();
+                } catch (IOException e) {
+                    LOGGER.error("Error when opening the form {}", e.getMessage(), e);
+                }
+
+                LOGGER.info("User is present! {}", user.getClass().getName());
             }
         });
     }

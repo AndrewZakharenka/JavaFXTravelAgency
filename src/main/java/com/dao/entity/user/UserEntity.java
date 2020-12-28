@@ -1,46 +1,54 @@
 package com.dao.entity.user;
 
 import com.dao.entity.Entity;
+import com.dao.entity.role.RoleEntity;
 
+import javax.persistence.*;
+
+@javax.persistence.Entity
+@Table(name = "users")
 public class UserEntity extends Entity {
-    private long id;
-    private String name;
-    private String surname;
-    private String login;
-    private String password;
-    private String role;
 
-    public UserEntity(long id, String name, String surname, String login, String password, String roles) {
-        this.id = id;
+    @Column(name = "Name")
+    private String name;
+
+    @Column(name = "Surname")
+    private String surname;
+
+    @Column(name = "Login")
+    private String login;
+
+    @Column(name = "Password")
+    private String password;
+
+    @ManyToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.EAGER)
+    @JoinColumn(name = "IdRoles", referencedColumnName = "id")
+    private RoleEntity roleEntity;
+
+    public UserEntity(String name, String surname, String login, String password, RoleEntity roleEntity) {
         this.name = name;
         this.surname = surname;
         this.login = login;
         this.password = password;
-        this.role = roles;
+        this.roleEntity = roleEntity;
+    }
+
+    public UserEntity(long id, String name, String surname, String login, String password, RoleEntity roleEntity) {
+        super.id = id;
+        this.name = name;
+        this.surname = surname;
+        this.login = login;
+        this.password = password;
+        this.roleEntity = roleEntity;
     }
 
     public UserEntity() {
     }
 
-    public UserEntity(String name, String surname, String login, String password, String role) {
-        this.name = name;
-        this.surname = surname;
-        this.login = login;
-        this.password = password;
-        this.role = role;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
-
     public void setId(long id) {
         this.id = id;
     }
+
 
     public String getName() {
         return name;
@@ -74,8 +82,11 @@ public class UserEntity extends Entity {
         this.password = password;
     }
 
-    @Override
-    public long getId() {
-        return id;
+    public RoleEntity getRoleEntity() {
+        return roleEntity;
+    }
+
+    public void setRoleEntity(RoleEntity roleEntity) {
+        this.roleEntity = roleEntity;
     }
 }
