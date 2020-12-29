@@ -6,6 +6,7 @@ import com.dao.entity.client.ClientEntity;
 import com.dao.entity.user.UserEntity;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 
 @javax.persistence.Entity
@@ -22,16 +23,16 @@ public class TourEntity extends Entity{
     private double price;
 
     @Column(name = "DepartureDate")
-    private Date departureDate;
+    private LocalDate departureDate;
 
     @Column(name = "AriveDate")
-    private Date arriveDate;
+    private LocalDate arriveDate;
 
     @Column(name = "Hotel")
     private String hotel;
 
 
-    @ManyToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.EAGER)
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
     @JoinColumn(name = "IdUsers", referencedColumnName = "id")
     private UserEntity userEntity;
 
@@ -39,7 +40,10 @@ public class TourEntity extends Entity{
     @JoinColumn(name = "IdClients", referencedColumnName = "id")
     private ClientEntity clientEntity;
 
-    public TourEntity(String departure, String arrive, Date departureDate, Date arriveDate, String hotel, double price,
+    public TourEntity() {
+    }
+
+    public TourEntity(String departure, String arrive, LocalDate departureDate, LocalDate arriveDate, String hotel, double price,
                       UserEntity userEntity, ClientEntity clientEntity) {
         this.departure = departure;
         this.arrive = arrive;
@@ -68,19 +72,19 @@ public class TourEntity extends Entity{
         this.arrive = arrive;
     }
 
-    public Date getDepartureDate() {
+    public LocalDate getDepartureDate() {
         return departureDate;
     }
 
-    public void setDepartureDate(Date departureDate) {
+    public void setDepartureDate(LocalDate departureDate) {
         this.departureDate = departureDate;
     }
 
-    public Date getArriveDate() {
+    public LocalDate getArriveDate() {
         return arriveDate;
     }
 
-    public void setArriveDate(Date arriveDate) {
+    public void setArriveDate(LocalDate arriveDate) {
         this.arriveDate = arriveDate;
     }
 
@@ -116,7 +120,17 @@ public class TourEntity extends Entity{
         this.clientEntity = clientEntity;
     }
 
-    public TourEntity() {
+    public TourEntity(long id, String departure, String arrive, LocalDate departureDate, LocalDate arriveDate,
+                      String hotel, double price, UserEntity userEntity, ClientEntity clientEntity) {
+        super(id);
+        this.departure = departure;
+        this.arrive = arrive;
+        this.departureDate = departureDate;
+        this.arriveDate = arriveDate;
+        this.hotel = hotel;
+        this.price = price;
+        this.userEntity = userEntity;
+        this.clientEntity = clientEntity;
     }
 
 }

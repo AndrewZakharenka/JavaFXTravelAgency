@@ -4,13 +4,14 @@ import com.service.dto.EntityDTO;
 import com.service.dto.clients.ClientDTO;
 import com.service.dto.user.UserDTO;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class TourDTO extends EntityDTO {
     private String departure;
     private String arrive;
-    private Date departureDate;
-    private Date arriveDate;
+    private LocalDate departureDate;
+    private LocalDate arriveDate;
     private String hotel;
     private double price;
 
@@ -18,7 +19,7 @@ public class TourDTO extends EntityDTO {
 
     private ClientDTO clientDTO;
 
-    public TourDTO(String departure, String arrive, Date departureDate, Date arriveDate, String hotel, double price,
+    public TourDTO(String departure, String arrive, LocalDate departureDate, LocalDate arriveDate, String hotel, double price,
                    UserDTO userDTO, ClientDTO clientDTO) {
         this.departure = departure;
         this.arrive = arrive;
@@ -30,7 +31,7 @@ public class TourDTO extends EntityDTO {
         this.clientDTO = clientDTO;
     }
 
-    public TourDTO(long id,String departure, String arrive, Date departureDate, Date arriveDate, String hotel, double price,
+    public TourDTO(long id,String departure, String arrive, LocalDate departureDate, LocalDate arriveDate, String hotel, double price,
                    UserDTO userDTO, ClientDTO clientDTO) {
         super(id);
         this.departure = departure;
@@ -59,19 +60,19 @@ public class TourDTO extends EntityDTO {
         this.arrive = arrive;
     }
 
-    public Date getDepartureDate() {
+    public LocalDate getDepartureDate() {
         return departureDate;
     }
 
-    public void setDepartureDate(Date departureDate) {
+    public void setDepartureDate(LocalDate departureDate) {
         this.departureDate = departureDate;
     }
 
-    public Date getArriveDate() {
+    public LocalDate getArriveDate() {
         return arriveDate;
     }
 
-    public void setArriveDate(Date arriveDate) {
+    public void setArriveDate(LocalDate arriveDate) {
         this.arriveDate = arriveDate;
     }
 
@@ -91,19 +92,24 @@ public class TourDTO extends EntityDTO {
         this.price = price;
     }
 
-    public UserDTO getUserEntity() {
+    public UserDTO getUserDTO() {
         return userDTO;
     }
 
-    public void setUserEntity(UserDTO userDTO) {
+    public void setUserDTO(UserDTO userDTO) {
         this.userDTO = userDTO;
     }
 
-    public ClientDTO getClientEntity() {
+    public ClientDTO getClientDTO() {
         return clientDTO;
     }
 
-    public void setClientEntity(ClientDTO clientDTO) {
+    public void setClientDTO(ClientDTO clientDTO) {
+        this.clientDTO = clientDTO;
+    }
+
+    public TourDTO(UserDTO userDTO, ClientDTO clientDTO) {
+        this.userDTO = userDTO;
         this.clientDTO = clientDTO;
     }
 

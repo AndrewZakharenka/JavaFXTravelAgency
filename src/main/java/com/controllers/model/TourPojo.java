@@ -1,6 +1,6 @@
 package com.controllers.model;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class TourPojo {
 
@@ -10,16 +10,16 @@ public class TourPojo {
 
     private String arriveField;
 
-    private Date departureDateField;
+    private LocalDate departureDateField;
 
-    private Date arriveDateField;
+    private LocalDate arriveDateField;
 
     private String infoAboutClientField;
 
     private String infoAboutUserField;
 
-    public TourPojo(long idField, String departureField, String arriveField, Date departureDateField,
-                    Date arriveDateField, String infoAboutClientField, String infoAboutUserField) {
+    public TourPojo(long idField, String departureField, String arriveField, LocalDate departureDateField,
+                    LocalDate arriveDateField, String infoAboutClientField, String infoAboutUserField) {
         this.idField = idField;
         this.departureField = departureField;
         this.arriveField = arriveField;
@@ -53,19 +53,19 @@ public class TourPojo {
         this.arriveField = arriveField;
     }
 
-    public Date getDepartureDateField() {
+    public LocalDate getDepartureDateField() {
         return departureDateField;
     }
 
-    public void setDepartureDateField(Date departureDateField) {
+    public void setDepartureDateField(LocalDate departureDateField) {
         this.departureDateField = departureDateField;
     }
 
-    public Date getArriveDateField() {
+    public LocalDate getArriveDateField() {
         return arriveDateField;
     }
 
-    public void setArriveDateField(Date arriveDateField) {
+    public void setArriveDateField(LocalDate arriveDateField) {
         this.arriveDateField = arriveDateField;
     }
 

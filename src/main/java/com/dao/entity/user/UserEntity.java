@@ -21,7 +21,7 @@ public class UserEntity extends Entity {
     @Column(name = "Password")
     private String password;
 
-    @ManyToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.EAGER)
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
     @JoinColumn(name = "IdRoles", referencedColumnName = "id")
     private RoleEntity roleEntity;
 

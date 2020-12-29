@@ -5,9 +5,9 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.Main;
+import com.controllers.AbstractController;
+import com.service.dto.roles.RoleDTO;
 import com.service.dto.user.UserDTO;
-import com.service.user.UserService;
-import com.service.user.impl.UserServiceImpl;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -17,12 +17,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
-public class RegistrationController{
-    private static final UserService USER_SERVICE = new UserServiceImpl();
-    private static final Logger LOGGER = LogManager.getLogger(AuthenticationController.class);
+public class RegistrationController  extends AbstractController {
 
     @FXML
     private ResourceBundle resources;
@@ -60,7 +55,7 @@ public class RegistrationController{
                     errorLabel.setText("Такой логин уже существует!");
                 } else {
                     UserDTO userDTO = USER_SERVICE.createUser(new UserDTO(nameField.getText(), surnameField.getText(),
-                            loginField.getText(), passwordField.getText(), "user"));
+                            loginField.getText(), passwordField.getText(), new RoleDTO(2, "User")));
 
 
                     FXMLLoader loader = new FXMLLoader();
@@ -81,3 +76,4 @@ public class RegistrationController{
         });
     }
 }
+

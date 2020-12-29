@@ -10,19 +10,19 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controllers.impl.ViewTripsController">
    <children>
       <Separator layoutX="2.0" layoutY="117.0" prefHeight="10.0" prefWidth="900.0" />
-      <Button fx:id="addTour" layoutX="326.0" layoutY="48.0" mnemonicParsing="false" text="Добавить">
+      <Button fx:id="addTour" layoutX="328.0" layoutY="38.0" mnemonicParsing="false" text="Добавить">
          <font>
-            <Font name="Verdana" size="14.0" />
+            <Font name="Verdana" size="24.0" />
          </font>
       </Button>
-      <Button fx:id="editTour" layoutX="569.0" layoutY="48.0" mnemonicParsing="false" text="Изменить">
+      <Button fx:id="editTour" layoutX="571.0" layoutY="38.0" mnemonicParsing="false" text="Изменить">
          <font>
-            <Font name="Verdana" size="14.0" />
+            <Font name="Verdana" size="24.0" />
          </font>
       </Button>
-      <Button fx:id="deleteTour" layoutX="795.0" layoutY="48.0" mnemonicParsing="false" text="Удалить">
+      <Button fx:id="deleteTour" layoutX="797.0" layoutY="38.0" mnemonicParsing="false" text="Удалить">
          <font>
-            <Font name="Verdana" size="14.0" />
+            <Font name="Verdana" size="24.0" />
          </font>
       </Button>
       <TableView fx:id="table" layoutX="-2.0" layoutY="122.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="476.0" prefWidth="1200.0">

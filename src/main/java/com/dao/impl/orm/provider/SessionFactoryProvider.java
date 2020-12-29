@@ -55,6 +55,10 @@ public class SessionFactoryProvider {
     }
 
     public SessionFactory getSessionFactory() {
+        if (sessionFactory == null){
+            init();
+            return sessionFactory;
+        }
         return sessionFactory;
     }
 }

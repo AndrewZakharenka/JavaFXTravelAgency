@@ -1,7 +1,5 @@
 package com.dao.entity.role;
 
-import com.dao.entity.Entity;
-
 import javax.persistence.*;
 
 @javax.persistence.Entity
@@ -32,5 +30,17 @@ public class RoleEntity {
 
     public String getName() {
         return name;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

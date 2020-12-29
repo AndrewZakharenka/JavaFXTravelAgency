@@ -18,4 +18,21 @@ public class TourServiceImpl implements TourService {
     public List<TourDTO> getAllTours() {
         return converter.convertAll(tourDAO.getAll());
     }
+
+    @Override
+    public TourDTO createTour(TourDTO tourDTO) {
+        return converter.convert(tourDAO.create(converter.convertReverse(tourDTO)));
+    }
+
+    @Override
+    public TourDTO getTourById(long id) {
+        return converter.convert(tourDAO.getEntity(id).get());
+    }
+
+    @Override
+    public void deleteTourById(long id) {
+        tourDAO.deleteEntity(id);
+    }
+
+
 }

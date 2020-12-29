@@ -21,6 +21,14 @@ public class ClientDTO extends EntityDTO {
         this.address = address;
     }
 
+    public ClientDTO(String name, String surname, String serialPassport, String numberPassport, String address) {
+        this.name = name;
+        this.surname = surname;
+        this.serialPassport = serialPassport;
+        this.numberPassport = numberPassport;
+        this.address = address;
+    }
+
     public String getName() {
         return name;
     }
@@ -63,10 +71,8 @@ public class ClientDTO extends EntityDTO {
 
     @Override
     public String toString() {
-        return  "name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                ", serialPassport='" + serialPassport + '\'' +
-                ", numberPassport='" + numberPassport + '\'' +
-                ", address='" + address ;
+        return  name + " " + surname + '\'' +
+                ", Паспорт:" + serialPassport + numberPassport +
+                ", Адрес: " + address ;
     }
 }

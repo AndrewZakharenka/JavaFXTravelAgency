@@ -3,8 +3,7 @@ package com.dao.entity.client;
 import com.dao.entity.Entity;
 
 import javax.persistence.Column;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
+
 import javax.persistence.Table;
 
 @javax.persistence.Entity

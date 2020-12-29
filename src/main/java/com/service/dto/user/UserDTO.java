@@ -1,41 +1,41 @@
 package com.service.dto.user;
 
 import com.service.dto.EntityDTO;
+import com.service.dto.roles.RoleDTO;
 
 public class UserDTO extends EntityDTO {
     private String name;
     private String surname;
     private String login;
     private String password;
-    private String roles;
+    private RoleDTO roleDTO;
 
-    public UserDTO(long id, String name, String surname, String login, String password, String roles) {
+    public UserDTO(long id, String name, String surname, String login, String password, RoleDTO roleDTO) {
         super(id);
         this.name = name;
         this.surname = surname;
         this.login = login;
         this.password = password;
-        this.roles = roles;
+        this.roleDTO = roleDTO;
     }
 
-    public UserDTO(String name, String surname, String login, String password, String roles) {
-        super(0);
+    public UserDTO(String name, String surname, String login, String password, RoleDTO roleDTO) {
         this.name = name;
         this.surname = surname;
         this.login = login;
         this.password = password;
-        this.roles = roles;
+        this.roleDTO = roleDTO;
     }
 
     public UserDTO() {
     }
 
-    public String getRole() {
-        return roles;
+    public RoleDTO getRoleDTO() {
+        return roleDTO;
     }
 
-    public void setRoles(String roles) {
-        this.roles = roles;
+    public void setRoleDTO(RoleDTO roleDTO) {
+        this.roleDTO = roleDTO;
     }
 
     public String getName() {
